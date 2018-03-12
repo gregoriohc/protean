@@ -2,6 +2,8 @@
 
 namespace Gregoriohc\Protean\Common\Messages;
 
+use Gregoriohc\Protean\Common\GatewayInterface;
+
 interface RequestInterface extends MessageInterface
 {
     /**
@@ -17,6 +19,13 @@ interface RequestInterface extends MessageInterface
      * @return ResponseInterface
      */
     public function response();
+
+    /**
+     * Get the request gateway
+     *
+     * @return GatewayInterface
+     */
+    public function gateway();
 
     /**
      * Send the request
