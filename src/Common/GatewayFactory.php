@@ -45,12 +45,14 @@ class GatewayFactory
         }
 
         if (function_exists('config')) {
+            // @codeCoverageIgnoreStart
             $configBasePath = snake_case(class_basename($this->contextNamespace));
             $parameters = config($configBasePath . '.gateways.' . $name, []);
 
             if (!array_key_exists('test_mode', $parameters)) {
                 $parameters = config($configBasePath . '.test_mode', true);
             }
+            // @codeCoverageIgnoreEnd
         }
 
         return $parameters;

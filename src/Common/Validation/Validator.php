@@ -130,7 +130,9 @@ class Validator
             $validatorFactory = new ValidatorFactory($translator);
             $validator = $validatorFactory->make($parameters, $rules, $this->validationMessagesCustom);
         } else {
+            // @codeCoverageIgnoreStart
             $validator = \Validator::make($parameters, $rules, $this->validationMessagesCustom);
+            // @codeCoverageIgnoreEnd
         }
         $this->bootValidatorExtensions($validator, ['is_valid', 'is_model']);
 
@@ -201,9 +203,11 @@ class Validator
         }
 
         $contextClass = get_class($parameters[1]);
-        $baseContextNamespace = implode('\\', array_slice(explode('\\', $contextClass), 0, 2));;
-        if (!strstr($parameters[0], '\\')) {
+        $baseContextNamespace = implode('\\', array_slice(explode('\\', $contextClass), 0, 2));
+        if (false === strstr($parameters[0], '\\')) {
+            // @codeCoverageIgnoreStart
             $parameters[0] = $baseContextNamespace . '\\Common\\Models\\' . $parameters[0];
+            // @codeCoverageIgnoreEnd
         }
 
         if (!is_a($value, $parameters[0], true)) {
