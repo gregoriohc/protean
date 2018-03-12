@@ -125,6 +125,26 @@ trait Parametrizable
     }
 
     /**
+     * @param $map
+     * @param bool $skipMissing
+     * @return array
+     */
+    public function mapParameters($map, $skipMissing = false)
+    {
+        $data = [];
+        $parameters = $this->parametersToArray();
+
+        foreach ($map as $mapKey => $parameter) {
+            if ($skipMissing && !array_has($parameters, $parameter)) {
+                continue;
+            }
+            array_set($data, $mapKey, array_get($parameters, $parameter));
+        }
+
+        return $data;
+    }
+
+    /**
      * @param string $name
      * @return mixed
      */

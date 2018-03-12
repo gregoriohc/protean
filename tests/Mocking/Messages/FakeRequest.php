@@ -25,7 +25,11 @@ class FakeRequest extends AbstractRequest
      */
     public function data()
     {
-        return $this->parametersToArray();
+        return $this->mapParameters([
+            'foo' => 'bar',
+            'bar' => 'foo',
+            'baz' => 'foz',
+        ], true);
     }
 
     /**
