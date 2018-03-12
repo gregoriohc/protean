@@ -30,7 +30,8 @@ class Protean
     public static function factory()
     {
         if (is_null(self::$factory)) {
-            self::$factory = new GatewayFactory(__NAMESPACE__);
+            $namespace = substr(static::class, 0, -(strlen(class_basename(static::class)) + 1));
+            self::$factory = new GatewayFactory($namespace);
         }
 
         return self::$factory;
