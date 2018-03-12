@@ -23,10 +23,9 @@ class GatewayFactory
      *
      * @param string $name
      * @param array $parameters
-     * @param mixed $context
      * @return GatewayInterface
      */
-    public function create($name, $parameters = null, $context = null)
+    public function create($name, $parameters = null)
     {
         $class = $this->gatewayClass($name);
 
